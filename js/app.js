@@ -1,28 +1,45 @@
-/*
- * Create a list that holds all of your cards
- */
- let deck = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+
+
+ //select the Id and create the variables. Create a list/array
+
+ let array_cards = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
+ let memory_values= [];
+ let memory_card_id= [];
+ //to know how many cards are flipped
+ let card_flipped= 0;
+ let card = document.getElementsByClassName('card');
+ let deck= document.getElementById('deck');
+ let stars= document.getElementById('score-panel');
+ let moves= document.getElementById('moves');
+ let timer= document.getElementById('timer');
+ let restart= document.getElementById('restart');
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(deck) {
-    var currentIndex = deck.length, temporaryValue, randomIndex;
+function shuffle(array_cards) {
+    var currentIndex = array_cards.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = deck[currentIndex];
-        deck[currentIndex] = deck[randomIndex];
-        deck[randomIndex] = temporaryValue;
+        temporaryValue = array_cards[currentIndex];
+        array_cards[currentIndex] = array_cards[randomIndex];
+        array_cards[randomIndex] = temporaryValue;
     }
 
-    return deck;
+    return array_cards;
 }
+
+
+//generate a new board
+
+
+
+
+
+
+
+
 
 
 /*
