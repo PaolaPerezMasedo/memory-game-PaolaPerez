@@ -1,45 +1,42 @@
-
-
- //select the Id and create the variables. Create a list/array
-
+//array of objects from the deck
  let array_cards = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
- let memory_values= [];
- let memory_card_id= [];
- //to know how many cards are flipped
- let card_flipped= 0;
- let card = document.getElementsByClassName('card');
- let deck= document.getElementById('deck');
- let stars= document.getElementById('score-panel');
- let moves= document.getElementById('moves');
- let timer= document.getElementById('timer');
- let restart= document.getElementById('restart');
 
+ const deck = document.getElementById('deck');
+ const timer= document.getElementByClassName('timer');
+ const moves= document.getElementByClassName('moves');
+ let cardsOpen= 0;
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array_cards) {
-    var currentIndex = array_cards.length, temporaryValue, randomIndex;
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array_cards[currentIndex];
-        array_cards[currentIndex] = array_cards[randomIndex];
-        array_cards[randomIndex] = temporaryValue;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
 
-    return array_cards;
+    return array;
 }
 
 
-//generate a new board
-
-
-
-
-
-
-
-
+//start Game
+function startGame(){
+   let shuffledArray = shuffle(array_cards);
+   cardsOpen= 0;
+   timer= 0;
+   moves=0;
+   for (var i= 0; i < shuffledArray.length; i++){
+     let li = document.createElement("li");
+     let text = document.createTextNode(shuffledArray[i]);
+     li.appendChild(text);
+     document.getElementById("deck").appendChild(li);
+}
+})
+}
+window.addEventListener = startGame();
 
 
 /*
