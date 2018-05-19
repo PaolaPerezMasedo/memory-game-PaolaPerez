@@ -1,6 +1,37 @@
 //a list that holds all the cards
  const array_cards = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
 
+/*
+*Display the cards in the page. We had the static html that
+we erased and now we need to display them with js
+*/
+
+const grid = document.querySelector(".deck");
+
+   for (let i= 0; i < array_cards.length; i++){
+     const card= document.createElement("li");
+     card.classList.add("card");
+     //.innerHTML in this case is to get the icon in each card
+     card.innerHTML= `<i class="${array_cards[i]}"></i>`;
+     grid.appendChild(card);
+}
+
+// Shuffle function from http://stackoverflow.com/a/2450976
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
+
+
 
  let moves= document.getElementByClassName('moves');
  let starRating= document.getElementByClassName('fa fa-star');
@@ -13,16 +44,7 @@
 
 
 
-const deck = document.querySelector(".deck");
-function startGame(){
-   let shuffledArray = shuffle(array_cards);
-   for (var i= 0; i < shuffledArray.length; i++){
-     let li = document.createElement("li");
-     let text = document.createTextNode(shuffledArray[i]);
-     li.appendChild(text);
-     deck.appendChild(li);
-}
-window.onload=startGame();
+
 
 
 
@@ -77,20 +99,6 @@ if( moves > stars3 && moves < stars2){
 
 }
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
 
 
 
