@@ -67,7 +67,7 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: #c0ca33;
     cursor: default;
 }
 
@@ -77,10 +77,13 @@ h1 {
 
 .deck .card.match {
     cursor: default;
-    background: #02ccba;
+    background: #0a8f08;
     font-size: 33px;
 }
 
+.deck.card.disable{
+  pointer-events: disable;
+}
 /*
  * Styles for the Score Panel
  */
@@ -93,10 +96,11 @@ h1 {
 
 .score-panel .stars {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: inline-block;
     margin: 0 5px 0 0;
 }
+
 
 .score-panel .stars li {
     list-style: none;

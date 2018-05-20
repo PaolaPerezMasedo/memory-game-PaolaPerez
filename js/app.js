@@ -6,110 +6,138 @@
 we erased and now we need to display them with js
 */
 
-const grid = document.querySelector(".deck");
+ const grid = document.querySelector(".deck");
+ let cardsOpen = [];
+ let matchedCards = [];
 
-   for (let i= 0; i < array_cards.length; i++){
-     const card= document.createElement("li");
-     card.classList.add("card");
-     //.innerHTML in this case is to get the icon in each card
-     card.innerHTML= `<i class="${array_cards[i]}"></i>`;
-     grid.appendChild(card);
+
+ // Shuffle function from http://stackoverflow.com/a/2450976
+ function shuffle(array) {
+     var currentIndex = array.length, temporaryValue, randomIndex;
+
+     while (currentIndex !== 0) {
+         randomIndex = Math.floor(Math.random() * currentIndex);
+         currentIndex -= 1;
+         temporaryValue = array[currentIndex];
+         array[currentIndex] = array[randomIndex];
+         array[randomIndex] = temporaryValue;
+     }
+
+     return array;
+ }
+
+// starts the game after schuffling
+function startGame(){
+  let schuffledCards = shuffle(array_cards);
+  for (let i = 0; i < schuffledCards.length; i++){
+   const card = document.createElement("li");
+   card.classList.add("card");
+   // .innerHTML in this case is to get the icon in each card
+   card.innerHTML = `<i class="${schuffledCards[i]}"></i>`;
+   grid.appendChild(card);
+
+   cardEvent(card);
+ }
 }
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
 
-    return array;
+// Set the event listener function. When we click
+function cardEvent(card){
+
+  card.addEventListener("click", function(){
+  const card1 = this;
+  const card2 = cardsOpen[0];
+
+  if(cardsOpen.length === 1){
+    card.classList.add("open", "show");
+    cardsOpen.push(this);
+
+    // [0] is the first element of the array and [1] is the second. We are comparing the icons or the innerHTML to see if they are the same
+      twoCards(card1, card2);
+
+  } else {
+    card.classList.add("open", "show", "disable");
+    cardsOpen.push(this);
+  }
+
+  });
 }
 
+// matched cards function
+function twoCards(card1, card2){
+    if(card1.innerHTML === card2.innerHTML){
+    card1.classList.add("match");
+    card2.classList.add("match");
+    matchedCards.push(card1, card2);
+    cardsOpen = [];
+    finished();
+  } else {
+  setTimeout(function(){
+    card1.classList.remove("open", "show", "disable");
+    card2.classList.remove("open", "show", "disable");
+  }, 400);
+  cardsOpen = [];
 
-
- let moves= document.getElementByClassName('moves');
- let starRating= document.getElementByClassName('fa fa-star');
- let cardsOpen= 0;
- let cardValues=[];
- let cardId= [];
- let stars1= 12;
- let stars2= 20;
- let stars3= 22;
-
-
-
-
-
-
-
-
-
-
-//timer
-let second = 0, minute = 0;
-let timer = document.querySelector(".timer");
-let interval;
-function startTimer(){
-    interval = setInterval(function(){
-        timer.innerHTML = minute+"mins "+second+"secs";
-        second++;
-        if(second == 60){
-            minute++;
-            second = 0;
-        }
-        if(minute == 60){
-            hour++;
-            minute = 0;
-        }
-    },1000);
 }
 
-//counter
-function moveCounter(){
+movesCounter();
+}
+
+//the game is finished
+function finished(){
+  if (matchedCards.length === array_cards.length){
+     alert ("game over");
+  }
+}
+
+// counts the Moves
+const counter = document.querySelector(".moves");
+let moves = 0;
+counter.innerHTML = 0;
+function movesCounter(){
     moves++;
     counter.innerHTML = moves;
-    if(moves == 1){
-        second = 0;
-        minute = 0;
-        hour = 0;
-        startTimer();
+
+    ratingStars();
+   }
+
+
+  // Star Rating
+const starContainer = document.querySelector(".stars");
+function ratingStars(){
+    if( moves > 14 && moves < 16){
+      starContainer.removeChild(starContainer.childNodes[0]);
+    } else if (moves > 16 && moves <20){
+      starContainer.removeChild(starContainer.childNodes[1]);
+    } else if (moves > 20){
+      starContainer.removeChild(starContainer.childNodes[2]);
     }
-
-//Star Rating
-function rating(moves){
-let rating=3;
-if( moves > stars3 && moves < stars2){
-  starRating.eq(3).removeClass('fa fa-star');
-} else if (moves > stars2 && moves < stars1){
-  starRating.eq(2).removeClass('fa fa star');
-  rating=2;
-} else if (moves > stars1){
-  starRating.eq(1).removeClass('fa fa-star');
-  rating=1;
-}
- return ( "Your score is" + rating);
-
-}
-
 }
 
 
 
+  // Set timer when we first click
+  // cambiar la alerta al final
+  // animations and responsive
+  // REadme
 
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+
+
+//restarts the Game
+const rsButton = document.querySelector(".restart");
+  rsButton.addEventListener("click", function() {
+  grid.innerHTML = "";
+  startGame();
+  matchedCards=[];
+  moves = 0;
+  counter.innerHTML = moves;
+  starContainer.innerHTML= `<li><i class ="fa fa-star"></i></li><li><i class ="fa fa-star"></i></li><li><i class ="fa fa-star"></i></li>`;
+
+});
+
+
+
+// start the Game
+startGame();
