@@ -93,18 +93,21 @@ h1 {
     width: 345px;
     margin-bottom: 10px;
 }
-
-.score-panel .stars {
+.score-panel .lives {
+    padding: 15px;
+    display: inline-block;
     margin: 0;
-    padding: 20px;
+}
+.score-panel .stars {
+    padding: 5px 30px 0 0;
     display: inline-block;
     margin: 0 5px 0 0;
 }
 
-
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    padding: 0;
 }
 
 .score-panel .restart {

@@ -106,19 +106,18 @@ function movesCounter(){
   // Star Rating
 const starContainer = document.querySelector(".stars");
 function ratingStars(){
-    if( moves > 14 && moves < 16){
+    if( moves > 12){
       starContainer.removeChild(starContainer.childNodes[0]);
-    } else if (moves > 16 && moves <20){
+    } else if (moves > 13 && moves < 20){
       starContainer.removeChild(starContainer.childNodes[1]);
-    } else if (moves > 20){
-      starContainer.removeChild(starContainer.childNodes[2]);
     }
 }
 
 
-
+  // alerta de game over
   // Set timer when we first click
   // cambiar la alerta al final
+
   // animations and responsive
   // REadme
 
