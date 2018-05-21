@@ -30,8 +30,71 @@ body {
 
 h1 {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 600;
+    font-size: 50px;
+    margin:0 0  30px 50px;
+    color: #c0ca33;
+    text-shadow: 1px 2px grey;
+
+
 }
+
+
+
+/*
+* Styles for the buttons
+*/
+
+.btnHow, .btnReglas {
+  background-color: #c0ca33;
+    border: 1,5px solid black;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btnHow{
+  margin:0 50px 30px 60px;
+}
+
+.btnReglas{
+  margin:0 20px 30px 40px;
+}
+
+.btnHow:hover, .btnReglas:hover {
+    background-color: #c0ca33;
+    color: white;
+    border: 2px solid #c0ca33;
+}
+
+.fa-repeat {
+  background-color: #c0ca33;
+    border: 5,5px solid black;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: outset;
+
+}
+.fa-repeat:hover {
+    background-color: #c0ca33;
+    color: white;
+    border-style: none;
+
+}
+
+
 
 /*
  * Styles for the deck of cards
@@ -49,6 +112,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 3em;
+
 }
 
 .deck .card {
@@ -63,23 +127,37 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    perspective: 700;
+
 }
 
 .deck .card.open {
-    transform: rotateY(0);
+    transform: rotateY(180deg);
+    transition: all 0.6s ease;
     background: #c0ca33;
     cursor: default;
-}
+    transform-style: preserve-3d;
+  }
 
 .deck .card.show {
     font-size: 33px;
-}
+  }
 
 .deck .card.match {
     cursor: default;
     background: #0a8f08;
     font-size: 33px;
+    animation-name:shake;
+    animation-duration: 0.5s;
+
 }
+@keyframes shake {
+  0%, 100% {transform: translateX(0);}
+   10%, 30%, 50%, 70%, 90% {transform: translateX(-1px);}
+   20%, 40%, 60%, 80% {transform: translateX(1px);}
+}
+  }
+
 
 .deck.card.disable{
   pointer-events: disable;
@@ -102,6 +180,7 @@ h1 {
     padding: 5px 30px 0 0;
     display: inline-block;
     margin: 0 5px 0 0;
+    color: #ffd300;
 }
 
 .score-panel .stars li {

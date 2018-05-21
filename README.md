@@ -1,20 +1,26 @@
 # Memory Game Project
 
-## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+## Project Rubric / Description
 
-## Instructions
+This is the third project from the Udacity Front-end Web Developer Nanodegree Scholarship.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The starter project that was provided by Udacity included some HTML and CSS styling to display a static version of the Memory Game project. I needed to convert this project from a static project to an interactive one. This required modifying the HTML and CSS files, but  primarily the JavaScript file.
+I was provided as well with a "shuffle function" to shuffle the deck of cards.
 
-To get started, open `js/app.js` and start building out the app's functionality
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## How to play?
+The game board consists of sixteen "cards" arranged in a grid. The deck is made up of eight different pairs of cards, each with different symbols on one side. The player has to find all the pairs by clicking on the cards. Once one card is clicked the timer will start and the moves will be count. The game has to be finished before the three stars (lives) are over. If the player doesn�t finish before all the lives are gone, a "game over" alert will appear. If the game is finish correctly  a pop up with the information of the game performance will show.
 
-## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+## Game functionality
+ This game includes:
+ - Timer
+ - Moves counter
+ - Stars rating
+ - Game Over modal
+ - Congratulations modal with the timing, number of moves and stars
+ - Restart button
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+##Usability
+  The game is fully responsive and works on mobile, tablet, and  desktop browsers.

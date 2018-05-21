@@ -76,7 +76,7 @@ function twoCards(card1, card2){
   setTimeout(function(){
     card1.classList.remove("open", "show", "disable");
     card2.classList.remove("open", "show", "disable");
-  }, 400);
+  }, 700);
   cardsOpen = [];
 
 }
@@ -87,7 +87,7 @@ movesCounter();
 //the game is finished
 function finished(){
   if (matchedCards.length === array_cards.length){
-     alert ("game over");
+     alert
   }
 }
 
@@ -118,7 +118,7 @@ function ratingStars(){
   // Set timer when we first click
   // cambiar la alerta al final
 
-  // animations and responsive
+  // responsive
   // REadme
 
 
