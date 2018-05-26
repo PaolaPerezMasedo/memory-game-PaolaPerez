@@ -31,21 +31,19 @@ body {
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
-    font-size: 50px;
-    margin:0 0  30px 50px;
+    font-size: 60px;
+    margin:20px 0  30px 50px;
     color: #c0ca33;
     text-shadow: 1px 2px grey;
-
-
 }
 
 
 
 /*
-* Styles for the buttons
+* Styles for the buttons of the deck
 */
 
-.btnHow, .btnReglas {
+.btnHow {
   background-color: #c0ca33;
     border: 1,5px solid black;
     border-radius: 8px;
@@ -58,22 +56,21 @@ h1 {
     font-weight: 500;
     cursor: pointer;
 }
+
 .btnHow{
-  margin:0 50px 30px 60px;
+  margin:auto;
+  display:block;
+  margin-bottom: 20px;
 }
 
-.btnReglas{
-  margin:0 20px 30px 40px;
-}
-
-.btnHow:hover, .btnReglas:hover {
+.btnHow:hover {
     background-color: #c0ca33;
     color: white;
     border: 2px solid #c0ca33;
 }
 
 .fa-repeat {
-  background-color: #c0ca33;
+    background-color: #c0ca33;
     border: 5,5px solid black;
     border-radius: 8px;
     color: white;
@@ -87,13 +84,13 @@ h1 {
     border-style: outset;
 
 }
+
 .fa-repeat:hover {
     background-color: #c0ca33;
     color: white;
     border-style: none;
-
+    transition: all 200ms;
 }
-
 
 
 /*
@@ -112,7 +109,7 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 3em;
-
+    pointer-events: none;
 }
 
 .deck .card {
@@ -128,7 +125,7 @@ h1 {
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
     perspective: 700;
-
+    pointer-events: auto;
 }
 
 .deck .card.open {
@@ -137,6 +134,7 @@ h1 {
     background: #c0ca33;
     cursor: default;
     transform-style: preserve-3d;
+    pointer-events: none;
   }
 
 .deck .card.show {
@@ -149,19 +147,19 @@ h1 {
     font-size: 33px;
     animation-name:shake;
     animation-duration: 0.5s;
-
 }
+
+
 @keyframes shake {
-  0%, 100% {transform: translateX(0);}
+   0%, 100% {transform: translateX(0);}
    10%, 30%, 50%, 70%, 90% {transform: translateX(-1px);}
    20%, 40%, 60%, 80% {transform: translateX(1px);}
-}
   }
 
+  .deck.card.disable{
+    pointer-events: disable;
+  }
 
-.deck.card.disable{
-  pointer-events: disable;
-}
 /*
  * Styles for the Score Panel
  */
@@ -171,16 +169,21 @@ h1 {
     width: 345px;
     margin-bottom: 10px;
 }
+
 .score-panel .lives {
     padding: 15px;
     display: inline-block;
-    margin: 0;
+    margin: 0 0 0 30px;
 }
 .score-panel .stars {
     padding: 5px 30px 0 0;
     display: inline-block;
     margin: 0 5px 0 0;
     color: #ffd300;
+}
+.score-panel .timerContainer{
+  padding: 5px 0 20px 0;
+  display:inline-block;
 }
 
 .score-panel .stars li {
@@ -190,6 +193,86 @@ h1 {
 }
 
 .score-panel .restart {
-    float: right;
-    cursor: pointer;
+  float: left;
+  cursor: pointer;
+}
+
+
+
+
+/*
+*responsive desing
+*/
+
+
+@media screen and (max-width:700px){
+
+.deck{
+  width: 500px;
+}
+.deck .card{
+    width: 90px;
+    height: 90px;
+    line-height: 75px;
+  }
+}
+
+@media screen and (max-width:500px){
+
+.deck{
+  width: 400px;
+  min-height: 500px;
+}
+
+.deck .card{
+    width: 70px;
+    height: 70px;
+}
+.deck .card.show {
+    font-size: 25px;
+  }
+
+  h1{
+    margin:20px 0 10px 0;
+  }
+}
+
+@media screen and (max-width:410px){
+  .deck{
+    width: 300px;
+    min-height: 420px;
+  }
+
+  .deck .card{
+      width: 50px;
+      height: 65px;
+  }
+
+    h1{
+      margin: 20px 0 20px 0;
+      font-size: 40px;
+    }
+
+    .deck .card.show {
+        font-size: 20px;
+      }
+
+    .btnHow{
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+
+    .score-panel .stars {
+        padding: 5px 10px 0 0;
+        margin: 0;
+    }
+
+    .score-panel .timerContainer{
+      margin-left: 110px;
+    }
+
+    .fa-repeat {
+      margin-left: 40px;
+    }
+
 }

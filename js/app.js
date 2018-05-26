@@ -1,4 +1,6 @@
-//a list that holds all the cards
+/*
+*a list that holds all the cards
+*/
  const array_cards = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
 
 /*
@@ -7,9 +9,10 @@ we erased and now we need to display them with js
 */
 
  const grid = document.querySelector(".deck");
+
  let cardsOpen = [];
  let matchedCards = [];
-
+ let gameStarted = false;
 
  // Shuffle function from http://stackoverflow.com/a/2450976
  function shuffle(array) {
@@ -25,6 +28,7 @@ we erased and now we need to display them with js
 
      return array;
  }
+
 
 // starts the game after schuffling
 function startGame(){
@@ -42,10 +46,17 @@ function startGame(){
 
 
 
+
 // Set the event listener function. When we click
 function cardEvent(card){
 
   card.addEventListener("click", function(){
+
+    if (!gameStarted){
+       startTimer();
+       gameStarted = true;
+   }
+
   const card1 = this;
   const card2 = cardsOpen[0];
 
@@ -53,16 +64,15 @@ function cardEvent(card){
     card.classList.add("open", "show");
     cardsOpen.push(this);
 
-    // [0] is the first element of the array and [1] is the second. We are comparing the icons or the innerHTML to see if they are the same
-      twoCards(card1, card2);
+    twoCards(card1, card2);
 
   } else {
     card.classList.add("open", "show", "disable");
     cardsOpen.push(this);
   }
-
   });
 }
+
 
 // matched cards function
 function twoCards(card1, card2){
@@ -71,25 +81,25 @@ function twoCards(card1, card2){
     card2.classList.add("match");
     matchedCards.push(card1, card2);
     cardsOpen = [];
-    finished();
+    finish();
+
   } else {
   setTimeout(function(){
     card1.classList.remove("open", "show", "disable");
     card2.classList.remove("open", "show", "disable");
   }, 700);
   cardsOpen = [];
-
 }
-
 movesCounter();
 }
 
-//the game is finished
-function finished(){
-  if (matchedCards.length === array_cards.length){
-     alert
-  }
+
+function isOver() {
+    if(matchedCards.length === icons.length) {
+      stopTimer()
+    }
 }
+
 
 // counts the Moves
 const counter = document.querySelector(".moves");
@@ -98,34 +108,49 @@ counter.innerHTML = 0;
 function movesCounter(){
     moves++;
     counter.innerHTML = moves;
+      ratingStars();
+ }
 
-    ratingStars();
-   }
 
 
   // Star Rating
 const starContainer = document.querySelector(".stars");
 function ratingStars(){
-    if( moves > 12){
-      starContainer.removeChild(starContainer.childNodes[0]);
-    } else if (moves > 13 && moves < 20){
-      starContainer.removeChild(starContainer.childNodes[1]);
+    if( moves === 12){
+      starContainer.removeChild(starContainer.children[0]);
+    } else if (moves === 16){
+      starContainer.removeChild(starContainer.children[0]);
+    } else if (moves === 18){
+      starContainer.removeChild(starContainer.children[0]);
+     stopTimer();
     }
 }
 
+// timer
+const second = 0;
+const minute = 0;
+const timerContainer = document.querySelector(".timer");
+let interval;
+timerContainer.innerHTML = "Timer: " + minute +":" + second;
+function startTimer(){
+    interval = setInterval(function(){
+        second++;
+        if(second == 60){
+            minute++;
+            second = 0;
+        }
+    },1000);
+}
 
-  // alerta de game over
-  // Set timer when we first click
-  // cambiar la alerta al final
-
-  // responsive
-  // REadme
-
+//stop timer
+function stopTimer() {
+    clearInterval(interval);
+}
 
 
 
 //restarts the Game
-const rsButton = document.querySelector(".restart");
+  const rsButton = document.querySelector(".restart");
   rsButton.addEventListener("click", function() {
   grid.innerHTML = "";
   startGame();
@@ -133,7 +158,11 @@ const rsButton = document.querySelector(".restart");
   moves = 0;
   counter.innerHTML = moves;
   starContainer.innerHTML= `<li><i class ="fa fa-star"></i></li><li><i class ="fa fa-star"></i></li><li><i class ="fa fa-star"></i></li>`;
-
+  stopTimer();
+  isFirstClick = true;
+  second = 0;
+  minute = 0;
+  timerContainer.innerHTML = "Timer: "+ minute +":" + second;
 });
 
 

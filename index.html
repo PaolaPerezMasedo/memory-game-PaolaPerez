@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Matching Game</title>
+    <title>Memory Game</title>
     <meta name="description" content="">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
@@ -15,25 +15,27 @@
         <header>
             <h1>Memory Game</h1>
             <button class="btnHow">How to play?</button>
-            <button class= "btnReglas">Reglas del juego</button>
-        </header>
+      </header>
 
         <section class="score-panel">
+          <div class="restart">
+          <i class="fa fa-repeat"></i>
+         </div>
             <p class= "lives">Lives</p>
             <ul class="stars">
             <li><i class ="fa fa-star"></i></li>
             <li><i class ="fa fa-star"></i></li>
             <li><i class ="fa fa-star"></i></li>
         	</ul>
-          <span class="moves"></span> Moves |
-          <span class="timer">Timer</span>
-            <div class="restart">
-        		<i class="fa fa-repeat"></i>
 
-          </div>
+          <span class="moves"></span> Move (s)
+          <div class="timerContainer">
+                <i class="timerLine"></i>
+                <span class=Timer>Timer:</span>
+            </div>
         </section>
 
-        <ul class="deck" >
+        <ul class="deck">
 
         </ul>
     </div>
