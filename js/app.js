@@ -3,13 +3,9 @@
 */
  const array_cards = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
 
-/*
-*Display the cards in the page. We had the static html that
-we erased and now we need to display them with js
-*/
+
 
  const grid = document.querySelector(".deck");
-
  let cardsOpen = [];
  let matchedCards = [];
  let  gameStarted = false;
@@ -29,6 +25,10 @@ we erased and now we need to display them with js
      return array;
  }
 
+ /*
+ *Display the cards in the page. We had the static html that
+ *we erased and now we need to display them with js.
+ */
 
 // starts the game after schuffling
 function startGame(){
@@ -94,9 +94,59 @@ movesCounter();
 
 function finish() {
     if(matchedCards.length === array_cards.length) {
-      stopTimer();
+      congrats();
     }
 }
+
+
+
+// Modal function congrats
+const modal = document.querySelector(".modal");
+const closeBtn = document.querySelector(".closeButton");
+const playAgainBtn = document.querySelector(".playAgain");
+
+function congrats(){
+setTimeout (function(){
+modal.classList.add("showModal");
+
+stopTimer();
+
+//final moves
+const finalMoves = document.querySelector("#totalMoves");
+finalMoves.innerHTML = moves;
+
+// Add Rate of the stars
+let starRating = document.querySelectorAll(".fa fa-star").innerHTML;
+const finalStars = document.querySelector("#totalRate");
+finalStars.innerHTML = starRating;
+
+// Add time to the Modal
+const totalMinutes = document.querySelector("#totalMinutes");
+const totalSeconds = document.querySelector("#totalSeconds");
+totalMinutes.innerHTML = minute;
+totalSeconds.innerHTML = second;
+
+},800);
+closeCongrats();
+playAgain();
+}
+
+
+// play Again for congrats
+function playAgain(){
+  playAgainBtn.addEventListener("click", function(e){
+  modal.classList.remove("showModal");
+     restart();
+  })
+}
+
+// close congrats
+function closeCongrats(){
+  closeBtn.addEventListener("click", function(e){
+      modal.classList.remove("showModal");
+    });
+}
+
 
 
 // counts the Moves
@@ -112,6 +162,9 @@ function movesCounter(){
 
 
   // Star Rating
+const stars = document.querySelectorAll(".fa-star");
+let starsList = document.querySelectorAll(".stars li");
+
 const starContainer = document.querySelector(".stars");
 function ratingStars(){
     if( moves === 12){
@@ -120,12 +173,11 @@ function ratingStars(){
       starContainer.removeChild(starContainer.children[0]);
     } else if (moves === 18){
       starContainer.removeChild(starContainer.children[0]);
-      stopTimer();
+      gameOver();
     }
 }
 
 // timer
-
 const timerContainer = document.querySelector(".timer");
 let interval;
 let second = 0;
@@ -149,9 +201,15 @@ function stopTimer() {
 
 
 
-//restarts the Game
+//restart button in score panel
   const rsButton = document.querySelector(".restart");
-  rsButton.addEventListener("click", function() {
+  rsButton.addEventListener("click", function(e) {
+    restart();
+    });
+
+
+//restarts the Game
+  function restart(){
   grid.innerHTML = "";
   startGame();
   matchedCards=[];
@@ -163,7 +221,8 @@ function stopTimer() {
   second = 0;
   minute = 0;
   timerContainer.innerHTML = "Timer: " + minute + " mins " + ": " + second + " secs";
-});
+}
+
 
 
 
