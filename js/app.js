@@ -12,7 +12,7 @@ we erased and now we need to display them with js
 
  let cardsOpen = [];
  let matchedCards = [];
- let gameStarted = false;
+ let  gameStarted = false;
 
  // Shuffle function from http://stackoverflow.com/a/2450976
  function shuffle(array) {
@@ -51,11 +51,10 @@ function startGame(){
 function cardEvent(card){
 
   card.addEventListener("click", function(){
-
     if (!gameStarted){
        startTimer();
        gameStarted = true;
-   }
+    }
 
   const card1 = this;
   const card2 = cardsOpen[0];
@@ -93,10 +92,9 @@ function twoCards(card1, card2){
 movesCounter();
 }
 
-
-function isOver() {
-    if(matchedCards.length === icons.length) {
-      stopTimer()
+function finish() {
+    if(matchedCards.length === array_cards.length) {
+      stopTimer();
     }
 }
 
@@ -122,16 +120,17 @@ function ratingStars(){
       starContainer.removeChild(starContainer.children[0]);
     } else if (moves === 18){
       starContainer.removeChild(starContainer.children[0]);
-     stopTimer();
+      stopTimer();
     }
 }
 
 // timer
-const second = 0;
-const minute = 0;
+
 const timerContainer = document.querySelector(".timer");
 let interval;
-timerContainer.innerHTML = "Timer: " + minute +":" + second;
+let second = 0;
+let minute = 0;
+timerContainer.innerHTML = "Timer: " + minute + " mins " + ": " + second + " secs";
 function startTimer(){
     interval = setInterval(function(){
         second++;
@@ -139,6 +138,7 @@ function startTimer(){
             minute++;
             second = 0;
         }
+        timerContainer.innerHTML = "Timer: " + minute + " mins " + ": " + second + " secs";
     },1000);
 }
 
@@ -159,10 +159,10 @@ function stopTimer() {
   counter.innerHTML = moves;
   starContainer.innerHTML= `<li><i class ="fa fa-star"></i></li><li><i class ="fa fa-star"></i></li><li><i class ="fa fa-star"></i></li>`;
   stopTimer();
-  isFirstClick = true;
+  gameStarted = false;
   second = 0;
   minute = 0;
-  timerContainer.innerHTML = "Timer: "+ minute +":" + second;
+  timerContainer.innerHTML = "Timer: " + minute + " mins " + ": " + second + " secs";
 });
 
 
