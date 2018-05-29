@@ -245,6 +245,7 @@ h1 {
 
 #totalRate li {
  display: inline-block;
+ color: #ffd300;
 }
 
 .playAgain {
@@ -330,14 +331,14 @@ h1 {
  color: red;
  font-family: 'Open Sans', sans-serif;
 }
-.show_modal {
+.show_gameOver {
   opacity: 1;
   visibility: visible;
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
   }
 
-.over_again {
+.modalOver_again {
   background-color: #c0ca33;
   border: 1,5px solid black;
   border-radius: 8px;
@@ -356,12 +357,12 @@ h1 {
   right: 30px;
 }
 
-.over_again:hover  {
+.modalOver_again:hover  {
     background-color: #c0ca33;
     color: white;
     border: 2px solid #c0ca33;
 }
-.over_close{
+.modalOver_close{
   background-color: #c0ca33;
   border: 5,5px solid black;
   border-radius: 8px;
@@ -379,15 +380,83 @@ h1 {
   width: 30px;
 }
 
-.over_close:hover{
+.modalOver_close:hover{
   background-color: #c0ca33;
   color: white;
   border-style: none;
   transition: all 200ms;
 }
 
+/*styles for the modal how to play?*/
+.instructions{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(1.1);
+  z-index: 2;
+}
+
+.show_instructions {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+  }
 
 
+.instructions_content{
+  background-color: white;
+  position: absolute;
+  transition: all 5s ease-in-out;
+  font-family: 'Coda', cursive;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 1.5rem;
+  width: 24rem;
+}
+
+.instructions_content h2 {
+ margin-top: 0;
+ color: red;
+ font-family: 'Open Sans', sans-serif;
+}
+
+.instructions_text{
+  line-height: 2.5;
+}
+
+
+ .instructions_close{
+   background-color: #c0ca33;
+   border: 5,5px solid black;
+   border-radius: 8px;
+   border-width: 1px;
+   border-style: outset;
+   color: white;
+   padding: 1px 1px;
+   text-align: center;
+   float: right;
+   font-size: 20px;
+   cursor: pointer;
+   transition: all 200ms;
+   font-weight: bold;
+   height: 30px;
+   width: 30px;
+ }
+
+ .instructions_close:hover{
+   background-color: #c0ca33;
+   color: white;
+   border-style: none;
+   transition: all 200ms;
+ }
 
 
 /*

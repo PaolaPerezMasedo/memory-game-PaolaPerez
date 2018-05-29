@@ -1,13 +1,16 @@
 /*
-*a list that holds all the cards
+*a list that holds all the cards. This is a dinamic list. In HTML is static
+That´s why we create a list in an array in javaScript
 */
  const array_cards = ['fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-cube', 'fa fa-anchor', 'fa fa-leaf', 'fa fa-bicycle', 'fa fa-diamond', 'fa fa-bomb', 'fa fa-leaf', 'fa fa-bomb', 'fa fa-bolt', 'fa fa-bicycle', 'fa fa-paper-plane-o', 'fa fa-cube'];
 
 
 
  const grid = document.querySelector(".deck");
+ //we need the empty arrays to store our cards
  let cardsOpen = [];
  let matchedCards = [];
+ // we need this variable to trigger the timer after the first click
  let  gameStarted = false;
 
  // Shuffle function from http://stackoverflow.com/a/2450976
@@ -45,7 +48,7 @@ function startGame(){
 }
 
 
-
+// with .innerHTML we get the HTML value of an element or we can add one from Js
 
 // Set the event listener function. When we click
 function cardEvent(card){
@@ -73,7 +76,7 @@ function cardEvent(card){
 }
 
 
-// matched cards function
+// matched cards function. Here we compare two cards
 function twoCards(card1, card2){
     if(card1.innerHTML === card2.innerHTML){
     card1.classList.add("match");
@@ -81,9 +84,10 @@ function twoCards(card1, card2){
     matchedCards.push(card1, card2);
     cardsOpen = [];
     finish();
-
+// setTimeout so the cards won´t hide too fast
   } else {
   setTimeout(function(){
+    //disable ist set in the css to avoid that we can click twice in the same card
     card1.classList.remove("open", "show", "disable");
     card2.classList.remove("open", "show", "disable");
   }, 700);
@@ -134,18 +138,51 @@ playAgain();
 
 // play Again for congrats
 function playAgain(){
-  playAgainBtn.addEventListener("click", function(e){
+  playAgainBtn.addEventListener("click", function(){
   modal.classList.remove("showModal");
      restart();
-  })
+  });
 }
 
 // close congrats
 function closeCongrats(){
-  closeBtn.addEventListener("click", function(e){
+  closeBtn.addEventListener("click", function(){
       modal.classList.remove("showModal");
     });
 }
+
+
+
+//modal for Game over
+const modalGameOver = document.querySelector(".modalOver");
+const closeBtnOver = document.querySelector(".modalOver_close");
+const playAgainBtnOver = document.querySelector(".modalOver_again");
+
+function gameOver(){
+  setTimeout (function(){
+  modalGameOver.classList.add("show_gameOver");
+  stopTimer();
+  },800);
+  closeGameOver();
+  playAgainOver();
+  }
+
+  // play Again after Game Over
+  function playAgainOver(){
+    playAgainBtnOver.addEventListener("click", function(){
+    modalGameOver.classList.remove("show_gameOver");
+       restart();
+    });
+  }
+
+  // close Game Over
+  function closeGameOver(){
+    closeBtnOver.addEventListener("click", function(){
+    modalGameOver.classList.remove("show_gameOver");
+     restart();
+      });
+  }
+
 
 
 
@@ -198,6 +235,13 @@ function stopTimer() {
 
 
 
+
+// How to play button
+
+
+
+
+
 //restart button in score panel
   const rsButton = document.querySelector(".restart");
   rsButton.addEventListener("click", function(e) {
@@ -225,3 +269,12 @@ function stopTimer() {
 
 // start the Game
 startGame();
+
+
+/*
+*Notes for my future me. What did I learnt?
+* Be careful with the name that you asing
+* Be careful with the typos
+* Before testing save, close and test.
+* After every new piece of code that has a new task always commit!
+*/
