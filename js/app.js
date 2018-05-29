@@ -99,11 +99,11 @@ function finish() {
 }
 
 
-
 // Modal function congrats
 const modal = document.querySelector(".modal");
 const closeBtn = document.querySelector(".closeButton");
 const playAgainBtn = document.querySelector(".playAgain");
+
 
 function congrats(){
 setTimeout (function(){
@@ -116,7 +116,7 @@ const finalMoves = document.querySelector("#totalMoves");
 finalMoves.innerHTML = moves;
 
 // Add Rate of the stars
-let starRating = document.querySelectorAll(".fa fa-star").innerHTML;
+let starRating = starContainer.innerHTML;
 const finalStars = document.querySelector("#totalRate");
 finalStars.innerHTML = starRating;
 
@@ -162,9 +162,6 @@ function movesCounter(){
 
 
   // Star Rating
-const stars = document.querySelectorAll(".fa-star");
-let starsList = document.querySelectorAll(".stars li");
-
 const starContainer = document.querySelector(".stars");
 function ratingStars(){
     if( moves === 12){
