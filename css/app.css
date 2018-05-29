@@ -43,31 +43,6 @@ h1 {
 * Styles for the buttons of the deck
 */
 
-.btnHow {
-  background-color: #c0ca33;
-    border: 1,5px solid black;
-    border-radius: 8px;
-    color: white;
-    padding: 10px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.btnHow{
-  margin:auto;
-  display:block;
-  margin-bottom: 20px;
-}
-
-.btnHow:hover {
-    background-color: #c0ca33;
-    color: white;
-    border: 2px solid #c0ca33;
-}
 
 .fa-repeat {
     background-color: #c0ca33;
@@ -387,6 +362,9 @@ h1 {
   transition: all 200ms;
 }
 
+/*
+* How to play
+*/
 /*styles for the modal how to play?*/
 .instructions{
   position: fixed;
@@ -402,14 +380,6 @@ h1 {
   z-index: 2;
 }
 
-.show_instructions {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1.0);
-  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-  }
-
-
 .instructions_content{
   background-color: white;
   position: absolute;
@@ -422,6 +392,64 @@ h1 {
   width: 24rem;
 }
 
+.show_instructions {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+  }
+
+
+.btnHow {
+  background-color: #c0ca33;
+    border: 1,5px solid black;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btnHow{
+  margin:auto;
+  display:block;
+  margin-bottom: 20px;
+}
+
+.btnHow:hover {
+    background-color: #c0ca33;
+    color: white;
+    border: 2px solid #c0ca33;
+}
+
+.instructions_close{
+  background-color: #c0ca33;
+  border: 5,5px solid black;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: outset;
+  color: white;
+  padding: 1px 1px;
+  text-align: center;
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 200ms;
+  font-weight: bold;
+  height: 30px;
+  width: 30px;
+}
+
+.instructions_close:hover{
+  background-color: #c0ca33;
+  color: white;
+  border-style: none;
+  transition: all 200ms;
+}
 .instructions_content h2 {
  margin-top: 0;
  color: red;
@@ -429,34 +457,8 @@ h1 {
 }
 
 .instructions_text{
-  line-height: 2.5;
+  line-height: 2;
 }
-
-
- .instructions_close{
-   background-color: #c0ca33;
-   border: 5,5px solid black;
-   border-radius: 8px;
-   border-width: 1px;
-   border-style: outset;
-   color: white;
-   padding: 1px 1px;
-   text-align: center;
-   float: right;
-   font-size: 20px;
-   cursor: pointer;
-   transition: all 200ms;
-   font-weight: bold;
-   height: 30px;
-   width: 30px;
- }
-
- .instructions_close:hover{
-   background-color: #c0ca33;
-   color: white;
-   border-style: none;
-   transition: all 200ms;
- }
 
 
 /*
@@ -531,5 +533,16 @@ h1 {
     .fa-repeat {
       margin-left: 40px;
     }
+
+    .modalOver_content {
+     width: 300px;
+    }
+    .instructions_content {
+     width: 300px;
+    }
+
+     .modalContent {
+      width: 300px;
+     }
 
 }

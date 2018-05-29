@@ -167,6 +167,8 @@ function gameOver(){
   playAgainOver();
   }
 
+
+
   // play Again after Game Over
   function playAgainOver(){
     playAgainBtnOver.addEventListener("click", function(){
@@ -183,6 +185,31 @@ function gameOver(){
       });
   }
 
+//how to play
+  const modalInst = document.querySelector(".instructions");
+  const closeBtnInst = document.querySelector(".instructions_close");
+  const btnInst = document.querySelector(".btnHow");
+
+  function howTo(){
+    setTimeout (function(){
+    openInstructions();
+  },1000);
+    ;
+    }
+
+  // open how to play
+  function openInstructions(){
+    btnInst.addEventListener("click", function(){
+    modalInst.classList.add("show_instructions");
+      });
+    }
+
+  // close how to play
+  function closeInstructions(){
+    closeBtnInst.addEventListener("click", function(){
+    modalInst.classList.remove("show_instructions");
+      });
+   }
 
 
 
@@ -232,14 +259,6 @@ function startTimer(){
 function stopTimer() {
     clearInterval(interval);
 }
-
-
-
-
-// How to play button
-
-
-
 
 
 //restart button in score panel
