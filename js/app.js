@@ -190,12 +190,7 @@ function gameOver(){
   const closeBtnInst = document.querySelector(".instructions_close");
   const btnInst = document.querySelector(".btnHow");
 
-  function howTo(){
-    setTimeout (function(){
-    openInstructions();
-  },1000);
-    ;
-    }
+
 
   // open how to play
   function openInstructions(){
