@@ -194,16 +194,12 @@ function gameOver(){
 
   // open how to play
   function openInstructions(){
-    btnInst.addEventListener("click", function(){
     modalInst.classList.add("show_instructions");
-      });
     }
 
   // close how to play
   function closeInstructions(){
-    closeBtnInst.addEventListener("click", function(){
     modalInst.classList.remove("show_instructions");
-      });
    }
 
 
@@ -276,6 +272,7 @@ function stopTimer() {
   second = 0;
   minute = 0;
   timerContainer.innerHTML = "Timer: " + minute + " mins " + ": " + second + " secs";
+  cardsOpen = [];
 }
 
 
